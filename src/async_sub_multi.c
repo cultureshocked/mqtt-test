@@ -28,6 +28,9 @@ void connlost(void* context, char* cause) {
   MQTTAsync_connectOptions opts = MQTTAsync_connectOptions_initializer;
   int rc;
 
+  opts.cleansession = 1;
+  opts.keepAliveInterval = 20;
+
   fprintf(stderr, "\nConnection lost.\n\n");
   if (cause) fprintf(stderr, "Reason: %s\n\n", cause);
   puts("Reconnecting...");
